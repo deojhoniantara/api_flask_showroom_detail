@@ -13,10 +13,10 @@ def get_all_bookings():
     cursor = conn.cursor(dictionary=True)
 
     query = """
-        SELECT b.id, u.name as user_name, v.name as vehicle_name, b.booking_date, b.method
+        SELECT b.id, u.name as user_name, c.name as car_name, b.booking_date, b.booking_time, b.location, b.status
         FROM bookings b
         LEFT JOIN users u ON b.user_id = u.id
-        LEFT JOIN vehicles v ON b.vehicle_id = v.id
+        LEFT JOIN cars c ON b.car_id = c.id
         ORDER BY b.created_at DESC
     """
     cursor.execute(query)
@@ -35,10 +35,11 @@ def get_my_bookings():
     cursor = conn.cursor(dictionary=True)
 
     query = """
-        SELECT b.id, v.name as vehicle_name, b.booking_date, b.method
+        SELECT b.id, c.name as car_name, b.booking_date, b.booking_time, b.location, b.status
         FROM bookings b
-        JOIN vehicles v ON b.vehicle_id = v.id
+        JOIN cars c ON b.car_id = c.id
         WHERE b.user_id = %s
+        ORDER BY b.created_at DESC
     """
     cursor.execute(query, (user_id,))
     results = cursor.fetchall()
@@ -52,12 +53,15 @@ def get_my_bookings():
 @jwt_required()
 def create_booking():
     user_id = get_jwt_identity()
-    vehicle_id = request.form.get('vehicle_id')
-    booking_date = request.form.get('booking_date')  # format: YYYY-MM-DD
-    method = request.form.get('method')  # buy / test_drive
+    car_id = request.form.get('car_id')  
+    booking_date = request.form.get('booking_date')  
+    booking_time = request.form.get('booking_time')  
+    location = request.form.get('location')  
+    message = request.form.get('message')  
 
-    if not all([vehicle_id, booking_date, method]):
-        return jsonify({"msg": "vehicle_id, booking_date, and method are required"}), 400
+    # Validate required fields
+    if not all([car_id, booking_date, booking_time, location]):
+        return jsonify({"msg": "car_id, booking_date, booking_time, and location are required"}), 400
 
     try:
         datetime.strptime(booking_date, "%Y-%m-%d")
@@ -65,12 +69,20 @@ def create_booking():
         return jsonify({"msg": "Invalid date format. Use YYYY-MM-DD"}), 400
 
     conn = get_connection()
-    cursor = conn.cursor()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT user_id FROM cars WHERE id = %s", (car_id,))
+    car = cursor.fetchone()
+    if car and car['user_id'] == user_id:
+        cursor.close()
+        conn.close()
+        return jsonify({"msg": "You cannot book your own car"}), 403
+
+    # Insert booking
     insert_query = """
-        INSERT INTO bookings (user_id, vehicle_id, booking_date, method)
-        VALUES (%s, %s, %s, %s)
+        INSERT INTO bookings (user_id, car_id, message, booking_date, booking_time, location)
+        VALUES (%s, %s, %s, %s, %s, %s)
     """
-    cursor.execute(insert_query, (user_id, vehicle_id, booking_date, method))
+    cursor.execute(insert_query, (user_id, car_id, message, booking_date, booking_time, location))
     conn.commit()
     new_id = cursor.lastrowid
 

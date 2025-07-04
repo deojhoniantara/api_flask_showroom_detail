@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "59e24889-695d-4b71-a1b2-dde39f9ad83a",
-		"name": "api_flask_web_showroom",
+		"_postman_id": "a78a9cda-963a-4f2c-b51e-3b16746cc52c",
+		"name": "api_flask_showroom",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "39811856"
 	},
@@ -19,12 +19,12 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "alex@mail.com",
+									"value": "ucup@mail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "alex123",
+									"value": "ucup123",
 									"type": "text"
 								}
 							]
@@ -110,47 +110,7 @@
 					"response": []
 				},
 				{
-					"name": "/api/v1/users/individuals",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{flask_local}}/api/v1/users/individuals",
-							"host": [
-								"{{flask_local}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"individuals"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/api/v1/users/dealers",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{flask_local}}/api/v1/users/dealers",
-							"host": [
-								"{{flask_local}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"dealers"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/api/v1/users/register individual",
+					"name": "/api/v1/users/register",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -170,11 +130,6 @@
 								{
 									"key": "password",
 									"value": "ucup123",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "individual",
 									"type": "text"
 								},
 								{
@@ -205,67 +160,7 @@
 					"response": []
 				},
 				{
-					"name": "/api/v1/users/register dealer",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Toyota Jaya",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "toyotajaya@mail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "toyotajaya123",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "dealer",
-									"type": "text"
-								},
-								{
-									"key": "dealer_name",
-									"value": "Toyota Jaya",
-									"type": "text"
-								},
-								{
-									"key": "address",
-									"value": "Penarukan",
-									"type": "text"
-								},
-								{
-									"key": "phone",
-									"value": "98745632",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{flask_local}}/api/v1/users/register",
-							"host": [
-								"{{flask_local}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/api/v1/users/ individual",
+					"name": "/api/v1/users/",
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -320,72 +215,12 @@
 					"response": []
 				},
 				{
-					"name": "/api/v1/users/ dealer",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Honda Kasih",
-									"type": "text"
-								},
-								{
-									"key": "email",
-									"value": "honda@mail.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "honda123",
-									"type": "text"
-								},
-								{
-									"key": "address",
-									"value": "Paris",
-									"type": "text"
-								},
-								{
-									"key": "phone",
-									"value": "78564987",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "dealer",
-									"type": "text"
-								},
-								{
-									"key": "dealer_name",
-									"value": "Honda Kasih",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{flask_local}}/api/v1/users/2",
-							"host": [
-								"{{flask_local}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"users",
-								"2"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "/api/v1/users/delete",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{flask_local}}/api/v1/users/6",
+							"raw": "{{flask_local}}/api/v1/users/1",
 							"host": [
 								"{{flask_local}}"
 							],
@@ -393,7 +228,7 @@
 								"api",
 								"v1",
 								"users",
-								"6"
+								"1"
 							]
 						}
 					},
@@ -428,14 +263,14 @@
 							]
 						},
 						"url": {
-							"raw": "{{flask_local}}/api/v1/vehicles/",
+							"raw": "{{flask_local}}/api/v1/cars/",
 							"host": [
 								"{{flask_local}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"vehicles",
+								"cars",
 								""
 							]
 						}
@@ -443,14 +278,14 @@
 					"response": []
 				},
 				{
-					"name": "/api/v1/vehicles/create used",
+					"name": "/api/v1/vehicles/create",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTQ2NDEzNiwianRpIjoiNjA0NzM4NmEtNjFlZS00OGFlLTgyYzQtNzAzMjI4MzA5ZmNhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NTE0NjQxMzYsImNzcmYiOiJjYWM4OTgyMS0zNjM4LTQwMTctYWU4Ni04NjNhMzI2MTVmMjEiLCJleHAiOjE3NTE0Njc3MzYsInJvbGUiOiJpbmRpdmlkdWFsIiwiZW1haWwiOiJhbGV4QG1haWwuY29tIn0.o-_1Y2E5V6urnxeLMKfyHc3G4w86wO0AHR32sqlaHgQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTYxMzg5MSwianRpIjoiZTJjZDc1MjgtODBlMy00MjE2LTliYWUtZmU4ZTgwYjQwNWY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NTE2MTM4OTEsImNzcmYiOiJlMzYxMjBkYS0xNzQ0LTQyNmItYWNlZC03OGUwNGQ1ZjJjMzkiLCJleHAiOjE3NTE2MTc0OTEsImVtYWlsIjoidWN1cEBtYWlsLmNvbSJ9.amIx1oQgxU8k0BgZtqdCjdGs9WGVNqLpYacus2B06iQ",
 									"type": "string"
 								}
 							]
@@ -466,23 +301,8 @@
 									"type": "text"
 								},
 								{
-									"key": "description",
-									"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-									"type": "text"
-								},
-								{
-									"key": "price",
-									"value": "197000000",
-									"type": "text"
-								},
-								{
 									"key": "brand",
 									"value": "Toyota",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "used",
 									"type": "text"
 								},
 								{
@@ -496,13 +316,13 @@
 									"type": "text"
 								},
 								{
-									"key": "color",
-									"value": "Putih",
+									"key": "year",
+									"value": "2021",
 									"type": "text"
 								},
 								{
-									"key": "year",
-									"value": "2021",
+									"key": "color",
+									"value": "Putih",
 									"type": "text"
 								},
 								{
@@ -519,46 +339,6 @@
 									"key": "mileage",
 									"value": "75000",
 									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{flask_local}}/api/v1/vehicles/create",
-							"host": [
-								"{{flask_local}}"
-							],
-							"path": [
-								"api",
-								"v1",
-								"vehicles",
-								"create"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/api/v1/vehicles/create new",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTQ2MjkzMSwianRpIjoiYzFjYmRlNzEtNDliMC00NzdlLTlhMjgtMjljYzFhNDIwMTY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NTE0NjI5MzEsImNzcmYiOiJmZGY0NjViNC02YTg2LTQwZGQtODllZC02YTUyZTg1MDNiMmMiLCJleHAiOjE3NTE0NjY1MzEsInJvbGUiOiJkZWFsZXIiLCJlbWFpbCI6ImhvbmRhQG1haWwuY29tIn0.vdIWkacsJGPjkOc_Y-0MjxLC4qmwvN9u3hAqqt7IbxY",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "name",
-									"value": "Jazz",
-									"type": "text"
 								},
 								{
 									"key": "description",
@@ -569,63 +349,18 @@
 									"key": "price",
 									"value": "197000000",
 									"type": "text"
-								},
-								{
-									"key": "brand",
-									"value": "Honda",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "new",
-									"type": "text"
-								},
-								{
-									"key": "transmission",
-									"value": "Manual",
-									"type": "text"
-								},
-								{
-									"key": "seats",
-									"value": "5",
-									"type": "text"
-								},
-								{
-									"key": "color",
-									"value": "Merah",
-									"type": "text"
-								},
-								{
-									"key": "year",
-									"value": "2021",
-									"type": "text"
-								},
-								{
-									"key": "location",
-									"value": "Singaraja",
-									"type": "text"
-								},
-								{
-									"key": "fuel_type",
-									"value": "Pertamax",
-									"type": "text"
-								},
-								{
-									"key": "stock",
-									"value": "4",
-									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{flask_local}}/api/v1/vehicles/create",
+							"raw": "{{flask_local}}/api/v1/cars/create",
 							"host": [
 								"{{flask_local}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"vehicles",
+								"cars",
 								"create"
 							]
 						}
@@ -633,14 +368,14 @@
 					"response": []
 				},
 				{
-					"name": "/api/v1/vehicles/update/",
+					"name": "/api/v1/vehicles/create",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTQ2MjkzMSwianRpIjoiYzFjYmRlNzEtNDliMC00NzdlLTlhMjgtMjljYzFhNDIwMTY5IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NTE0NjI5MzEsImNzcmYiOiJmZGY0NjViNC02YTg2LTQwZGQtODllZC02YTUyZTg1MDNiMmMiLCJleHAiOjE3NTE0NjY1MzEsInJvbGUiOiJkZWFsZXIiLCJlbWFpbCI6ImhvbmRhQG1haWwuY29tIn0.vdIWkacsJGPjkOc_Y-0MjxLC4qmwvN9u3hAqqt7IbxY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTYxMzg5MSwianRpIjoiZTJjZDc1MjgtODBlMy00MjE2LTliYWUtZmU4ZTgwYjQwNWY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NTE2MTM4OTEsImNzcmYiOiJlMzYxMjBkYS0xNzQ0LTQyNmItYWNlZC03OGUwNGQ1ZjJjMzkiLCJleHAiOjE3NTE2MTc0OTEsImVtYWlsIjoidWN1cEBtYWlsLmNvbSJ9.amIx1oQgxU8k0BgZtqdCjdGs9WGVNqLpYacus2B06iQ",
 									"type": "string"
 								}
 							]
@@ -652,27 +387,12 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Jazz",
-									"type": "text"
-								},
-								{
-									"key": "description",
-									"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
-									"type": "text"
-								},
-								{
-									"key": "price",
-									"value": "293000000",
+									"value": "Avanza",
 									"type": "text"
 								},
 								{
 									"key": "brand",
-									"value": "Honda",
-									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "new",
+									"value": "Toyota",
 									"type": "text"
 								},
 								{
@@ -686,13 +406,13 @@
 									"type": "text"
 								},
 								{
-									"key": "color",
-									"value": "Merah",
+									"key": "year",
+									"value": "2021",
 									"type": "text"
 								},
 								{
-									"key": "year",
-									"value": "2021",
+									"key": "color",
+									"value": "Putih",
 									"type": "text"
 								},
 								{
@@ -706,23 +426,33 @@
 									"type": "text"
 								},
 								{
-									"key": "stock",
-									"value": "4",
+									"key": "mileage",
+									"value": "75000",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "197000000",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{flask_local}}/api/v1/vehicles/update/2",
+							"raw": "{{flask_local}}/api/v1/cars/update/1",
 							"host": [
 								"{{flask_local}}"
 							],
 							"path": [
 								"api",
 								"v1",
-								"vehicles",
+								"cars",
 								"update",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -818,6 +548,45 @@
 					"response": []
 				},
 				{
+					"name": "/api/v1/articles/read/id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "alice_johnson",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{flask_local}}/api/v1/articles/read/1",
+							"host": [
+								"{{flask_local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"articles",
+								"read",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/api/v1/articles/create",
 					"request": {
 						"auth": {
@@ -825,7 +594,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTM4NDc0MywianRpIjoiYzg3YWYzMzUtZjUzYy00NDY3LTk5MTktN2RmZjc5OTU2MzExIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTEzODQ3NDMsImNzcmYiOiJhMmFjMTY2My00ODY4LTQ5M2UtODE1MS01NWNhYTQ0YjUwZDIiLCJleHAiOjE3NTEzODgzNDMsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.wKXeJX8u25H6m1TASk01UdIczNbU29VrbHeNeRWZyKA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTYxNTI1MiwianRpIjoiYjVjNDhiOWEtNmFkZi00NDA5LTk2YmQtM2NlNTcxOTZhMWI3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTE2MTUyNTIsImNzcmYiOiJlNzVmZGMxMS00NzVlLTQyMzUtYjIyNC1kODBlZjhlNmExYjUiLCJleHAiOjE3NTE2MTg4NTIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.Jj0-aw75Sz90HbYUy4o05wbP0PDrd_AjVCFhCRr5Mjc",
 									"type": "string"
 								}
 							]
@@ -870,7 +639,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTM4NDc0MywianRpIjoiYzg3YWYzMzUtZjUzYy00NDY3LTk5MTktN2RmZjc5OTU2MzExIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTEzODQ3NDMsImNzcmYiOiJhMmFjMTY2My00ODY4LTQ5M2UtODE1MS01NWNhYTQ0YjUwZDIiLCJleHAiOjE3NTEzODgzNDMsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.wKXeJX8u25H6m1TASk01UdIczNbU29VrbHeNeRWZyKA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTYxNTI1MiwianRpIjoiYjVjNDhiOWEtNmFkZi00NDA5LTk2YmQtM2NlNTcxOTZhMWI3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTE2MTUyNTIsImNzcmYiOiJlNzVmZGMxMS00NzVlLTQyMzUtYjIyNC1kODBlZjhlNmExYjUiLCJleHAiOjE3NTE2MTg4NTIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.Jj0-aw75Sz90HbYUy4o05wbP0PDrd_AjVCFhCRr5Mjc",
 									"type": "string"
 								}
 							]

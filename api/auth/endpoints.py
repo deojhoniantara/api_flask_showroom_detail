@@ -3,9 +3,10 @@ from flask import Blueprint, jsonify, request
 from flask_jwt_extended import create_access_token, decode_token
 from helper.db_helper import get_connection  
 from flask_jwt_extended import jwt_required
+from flask_bcrypt import Bcrypt
 
 auth_endpoints = Blueprint('auth', __name__)
-
+bcrypt = Bcrypt()
 
 @auth_endpoints.route('/login', methods=['POST'])
 def login():
@@ -27,13 +28,18 @@ def login():
     if not user:
         return jsonify({"msg": "User not found"}), 404
 
+    # Verify password with bcrypt
+    if not bcrypt.check_password_hash(user['password'], password):
+        return jsonify({"msg": "Invalid password"}), 401
+
+    # Generate token
     access_token = create_access_token(
         identity=str(user["id"]),
         additional_claims={
-            'role': user["type"], 
             'email': user["email"]
         }
     )
+
     expires = decode_token(access_token)['exp']
 
     return jsonify({

@@ -11,7 +11,7 @@ cd api_flask_web_showroom
 
 ```bash
 python -m venv venv
-.\venv\Scripts\activate        # Windows
+.\venv\Scripts\activate        
 pip install -r requirements.txt
 ```  
 

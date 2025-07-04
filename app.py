@@ -22,20 +22,18 @@ jwt.init_app(app)
 # Register Blueprints
 from api.auth.endpoints import auth_endpoints
 from api.users.endpoints import users_endpoints
-from api.vehicles.endpoints import vehicles_endpoints
+from api.cars.endpoints import cars_endpoints
 from api.bookings.endpoints import bookings_endpoints
 from api.articles.endpoints import articles_endpoints
-from api.notifications.endpoints import notifications_endpoints
 from api.admins.endpoints import admins_endpoints
 
 # Blueprint Registration
 app.register_blueprint(auth_endpoints, url_prefix='/api/v1/auth')
 app.register_blueprint(admins_endpoints, url_prefix='/api/v1/admins')
 app.register_blueprint(users_endpoints, url_prefix='/api/v1/users')
-app.register_blueprint(vehicles_endpoints, url_prefix='/api/v1/vehicles')
+app.register_blueprint(cars_endpoints, url_prefix='/api/v1/cars')
 app.register_blueprint(bookings_endpoints, url_prefix='/api/v1/bookings')
 app.register_blueprint(articles_endpoints, url_prefix='/api/v1/articles')
-app.register_blueprint(notifications_endpoints, url_prefix='/api/v1/notifications')
 
 # Static Files (Optional)
 from static.static_file_server import static_file_server
