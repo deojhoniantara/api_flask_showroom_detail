@@ -3,8 +3,8 @@
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/deojhoniantara/api_flask_web_showroom.git
-cd api_flask_web_showroom
+git clone https://github.com/deojhoniantara/api_flask_showroom_detail.git
+cd api_flask_showroom_detail
 ```  
 
 ### 2. Setup Environment
@@ -24,7 +24,7 @@ export FLASK_ENV=development
 ### 4. Import File Database SQL (Folder stuff/)
 Jalankan web server lokal (Laragon / XAMPP)  
 Buka phpMyAdmin  
-Buat Database → Import  
+Buat Database "db_showroom" → Import  
 Pilih file .sql dari folder stuff/  
 
 ### 5. Import Postman Collection (Folder stuff/)
