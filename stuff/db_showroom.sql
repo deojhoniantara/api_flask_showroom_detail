@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 04, 2025 at 07:59 AM
+-- Generation Time: Jul 05, 2025 at 10:40 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -52,15 +52,38 @@ CREATE TABLE `articles` (
   `admin_id` int NOT NULL,
   `title` varchar(150) NOT NULL,
   `content` text,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `image` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `articles`
 --
 
-INSERT INTO `articles` (`id`, `admin_id`, `title`, `content`, `created_at`) VALUES
-(1, 1, 'CARA MERAWAT MOBIL TUA - update', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2025-07-04 07:50:24');
+INSERT INTO `articles` (`id`, `admin_id`, `title`, `content`, `created_at`, `image`) VALUES
+(1, 1, 'CARA MERAWAT MOBIL TUA - update', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2025-07-04 07:50:24', 'static/uploads/1751678332.970892_download.jpeg'),
+(2, 1, 'TIPS MEMBELI MOBIL BEKAS - test', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2025-07-05 09:29:18', 'static/uploads/1751678958.937173_images.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `article_comments`
+--
+
+CREATE TABLE `article_comments` (
+  `id` int NOT NULL,
+  `article_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `article_comments`
+--
+
+INSERT INTO `article_comments` (`id`, `article_id`, `user_id`, `comment`, `created_at`) VALUES
+(1, 1, 2, 'informasi yang sangat bagus', '2025-07-05 09:42:40');
 
 -- --------------------------------------------------------
 
@@ -101,15 +124,19 @@ CREATE TABLE `cars` (
   `price` decimal(15,2) DEFAULT NULL,
   `description` text,
   `image` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `image_2` varchar(255) DEFAULT NULL,
+  `image_3` varchar(255) DEFAULT NULL,
+  `image_4` varchar(255) DEFAULT NULL,
+  `image_5` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `cars`
 --
 
-INSERT INTO `cars` (`id`, `user_id`, `name`, `brand`, `transmission`, `seats`, `year`, `color`, `location`, `fuel_type`, `mileage`, `price`, `description`, `image`, `created_at`) VALUES
-(1, 2, 'Avanza', 'Toyota', 'Manual', 5, 2021, 'Putih', 'Singaraja', 'Pertamax', 75000, '197000000.00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', NULL, '2025-07-04 07:35:50');
+INSERT INTO `cars` (`id`, `user_id`, `name`, `brand`, `transmission`, `seats`, `year`, `color`, `location`, `fuel_type`, `mileage`, `price`, `description`, `image`, `created_at`, `image_2`, `image_3`, `image_4`, `image_5`) VALUES
+(1, 2, 'Avanza', 'Toyota', 'Manual', 5, 2021, 'Putih', 'Singaraja', 'Pertamax', 75000, '197000000.00', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'static/uploads/1751702396_download.jpeg', '2025-07-04 07:35:50', 'static/uploads/1751702396_download_1.jpeg', 'static/uploads/1751702396_download_2.jpeg', 'static/uploads/1751702396_download_3.jpeg', 'static/uploads/1751702396_download_4.jpeg');
 
 -- --------------------------------------------------------
 
@@ -153,6 +180,14 @@ ALTER TABLE `articles`
   ADD KEY `admin_id` (`admin_id`);
 
 --
+-- Indexes for table `article_comments`
+--
+ALTER TABLE `article_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `article_id` (`article_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indexes for table `bookings`
 --
 ALTER TABLE `bookings`
@@ -188,6 +223,12 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `article_comments`
+--
+ALTER TABLE `article_comments`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -217,6 +258,13 @@ ALTER TABLE `users`
 --
 ALTER TABLE `articles`
   ADD CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `article_comments`
+--
+ALTER TABLE `article_comments`
+  ADD CONSTRAINT `article_comments_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `article_comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `bookings`

@@ -11,7 +11,7 @@ from flasgger import Swagger
 load_dotenv()
 
 # Inisialisasi Flask
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.config.from_object(Config)
 
 # Middleware
@@ -34,6 +34,7 @@ app.register_blueprint(users_endpoints, url_prefix='/api/v1/users')
 app.register_blueprint(cars_endpoints, url_prefix='/api/v1/cars')
 app.register_blueprint(bookings_endpoints, url_prefix='/api/v1/bookings')
 app.register_blueprint(articles_endpoints, url_prefix='/api/v1/articles')
+
 
 # Static Files (Optional)
 from static.static_file_server import static_file_server

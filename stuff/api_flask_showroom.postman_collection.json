@@ -50,7 +50,7 @@
 			"name": "authentication admin",
 			"item": [
 				{
-					"name": "/api/v1/auth/login",
+					"name": "/api/v1/admins/login",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -278,6 +278,33 @@
 					"response": []
 				},
 				{
+					"name": "/api/v1/vehicles/ Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{flask_local}}/api/v1/cars/1",
+							"host": [
+								"{{flask_local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/api/v1/vehicles/create",
 					"request": {
 						"auth": {
@@ -349,6 +376,31 @@
 									"key": "price",
 									"value": "197000000",
 									"type": "text"
+								},
+								{
+									"key": "image",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image_2",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image_3",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image_4",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "image_5",
+									"value": "",
+									"type": "text"
 								}
 							]
 						},
@@ -375,7 +427,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTYxMzg5MSwianRpIjoiZTJjZDc1MjgtODBlMy00MjE2LTliYWUtZmU4ZTgwYjQwNWY0IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NTE2MTM4OTEsImNzcmYiOiJlMzYxMjBkYS0xNzQ0LTQyNmItYWNlZC03OGUwNGQ1ZjJjMzkiLCJleHAiOjE3NTE2MTc0OTEsImVtYWlsIjoidWN1cEBtYWlsLmNvbSJ9.amIx1oQgxU8k0BgZtqdCjdGs9WGVNqLpYacus2B06iQ",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTY5OTYxNiwianRpIjoiODFjNTVhZTgtNTNjMi00NWU4LWIzNjEtZmE3Mjc4YzdmZDQyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NTE2OTk2MTYsImNzcmYiOiIyMzhjZTBlNC0wYTNkLTRkZjctYWM1YS02ZThkMTU1ZmRjMWIiLCJleHAiOjE3NTE3MDMyMTYsImVtYWlsIjoidWN1cEBtYWlsLmNvbSJ9.KBwDx39IElelyNrjIpV5u-bRGES3Mn3f4HLZbXdNIyg",
 									"type": "string"
 								}
 							]
@@ -439,6 +491,31 @@
 									"key": "price",
 									"value": "197000000",
 									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/deo jhoniantara/Downloads/download.jpeg"
+								},
+								{
+									"key": "image_2",
+									"type": "file",
+									"src": "/C:/Users/deo jhoniantara/Downloads/download (1).jpeg"
+								},
+								{
+									"key": "image_3",
+									"type": "file",
+									"src": "/C:/Users/deo jhoniantara/Downloads/download (2).jpeg"
+								},
+								{
+									"key": "image_4",
+									"type": "file",
+									"src": "/C:/Users/deo jhoniantara/Downloads/download (3).jpeg"
+								},
+								{
+									"key": "image_5",
+									"type": "file",
+									"src": "/C:/Users/deo jhoniantara/Downloads/download (4).jpeg"
 								}
 							]
 						},
@@ -587,6 +664,81 @@
 					"response": []
 				},
 				{
+					"name": "/api/v1/articles/id/comment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{flask_local}}/api/v1/articles/1/comments",
+							"host": [
+								"{{flask_local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"articles",
+								"1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/articles/id/comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTcwODQyNCwianRpIjoiOGU5MWJiMjItMzJjNy00NTFmLTkyNTItNDkxNzM5MDRmN2QxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NTE3MDg0MjQsImNzcmYiOiI5ODExZTY4MC03NDZhLTRjZjEtYWMwZS1jNmI2OTYxZTcyNmYiLCJleHAiOjE3NTE3MTIwMjQsImVtYWlsIjoidWN1cEBtYWlsLmNvbSJ9.UHP8wCh3w5hS3MU9uYXEbxFKxQypOkPGcLV0I2UWlH0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "comment",
+									"value": "informasi yang sangat bagus",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{flask_local}}/api/v1/articles/1/comments?comment=informasi yang bagus",
+							"host": [
+								"{{flask_local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"articles",
+								"1",
+								"comments"
+							],
+							"query": [
+								{
+									"key": "comment",
+									"value": "informasi yang bagus"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/api/v1/articles/create",
 					"request": {
 						"auth": {
@@ -594,7 +746,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTYxNTI1MiwianRpIjoiYjVjNDhiOWEtNmFkZi00NDA5LTk2YmQtM2NlNTcxOTZhMWI3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTE2MTUyNTIsImNzcmYiOiJlNzVmZGMxMS00NzVlLTQyMzUtYjIyNC1kODBlZjhlNmExYjUiLCJleHAiOjE3NTE2MTg4NTIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.Jj0-aw75Sz90HbYUy4o05wbP0PDrd_AjVCFhCRr5Mjc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTcwNjc1MywianRpIjoiYjVhZGYyYmUtODY2ZC00M2MxLWJhM2YtZGRkYzM4MzY3MzljIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTE3MDY3NTMsImNzcmYiOiI3MTM3MzYyOS1kODJjLTRlZjQtYmI2OS1jODg3YzZmNThiNDUiLCJleHAiOjE3NTE3MTAzNTMsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.t_iCEIJrpzFMOgRz1I6XKWRjiiAM0kk1ATGNVwg92z0",
 									"type": "string"
 								}
 							]
@@ -606,13 +758,18 @@
 							"formdata": [
 								{
 									"key": "title",
-									"value": "CARA MERAWAT MOBIL TUA - test",
+									"value": "TIPS MEMBELI MOBIL BEKAS - test",
 									"type": "text"
 								},
 								{
 									"key": "content",
 									"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/deo jhoniantara/Downloads/images.jpeg"
 								}
 							]
 						},
@@ -639,7 +796,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTYxNTI1MiwianRpIjoiYjVjNDhiOWEtNmFkZi00NDA5LTk2YmQtM2NlNTcxOTZhMWI3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTE2MTUyNTIsImNzcmYiOiJlNzVmZGMxMS00NzVlLTQyMzUtYjIyNC1kODBlZjhlNmExYjUiLCJleHAiOjE3NTE2MTg4NTIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.Jj0-aw75Sz90HbYUy4o05wbP0PDrd_AjVCFhCRr5Mjc",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTcwNjc1MywianRpIjoiYjVhZGYyYmUtODY2ZC00M2MxLWJhM2YtZGRkYzM4MzY3MzljIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTE3MDY3NTMsImNzcmYiOiI3MTM3MzYyOS1kODJjLTRlZjQtYmI2OS1jODg3YzZmNThiNDUiLCJleHAiOjE3NTE3MTAzNTMsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.t_iCEIJrpzFMOgRz1I6XKWRjiiAM0kk1ATGNVwg92z0",
 									"type": "string"
 								}
 							]
@@ -658,6 +815,11 @@
 									"key": "content",
 									"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
 									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/deo jhoniantara/Downloads/download.jpeg"
 								}
 							]
 						},
@@ -685,7 +847,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTM4NDc0MywianRpIjoiYzg3YWYzMzUtZjUzYy00NDY3LTk5MTktN2RmZjc5OTU2MzExIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTEzODQ3NDMsImNzcmYiOiJhMmFjMTY2My00ODY4LTQ5M2UtODE1MS01NWNhYTQ0YjUwZDIiLCJleHAiOjE3NTEzODgzNDMsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.wKXeJX8u25H6m1TASk01UdIczNbU29VrbHeNeRWZyKA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTYxNTI1MiwianRpIjoiYjVjNDhiOWEtNmFkZi00NDA5LTk2YmQtM2NlNTcxOTZhMWI3IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTE2MTUyNTIsImNzcmYiOiJlNzVmZGMxMS00NzVlLTQyMzUtYjIyNC1kODBlZjhlNmExYjUiLCJleHAiOjE3NTE2MTg4NTIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.Jj0-aw75Sz90HbYUy4o05wbP0PDrd_AjVCFhCRr5Mjc",
 									"type": "string"
 								}
 							]
