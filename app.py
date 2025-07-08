@@ -1,7 +1,7 @@
 """Backend Showroom - API Flask Modular"""
 
 from flask import Flask
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
 from extensions import jwt
 from config import Config
@@ -15,7 +15,7 @@ app = Flask(__name__, static_url_path='/static', static_folder='static')
 app.config.from_object(Config)
 
 # Middleware
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5173", "http://127.0.0.1:5173"]}}, supports_credentials=True)
 Swagger(app)
 jwt.init_app(app)
 

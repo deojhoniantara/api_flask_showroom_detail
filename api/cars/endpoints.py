@@ -14,26 +14,45 @@ UPLOAD_FOLDER = "img"
 # GET all cars
 @cars_endpoints.route('/', methods=['GET'])
 def get_all_cars():
+    owner_id = request.args.get('owner_id', type=int)
+
     try:
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("""
-            SELECT c.id, c.name, c.transmission, c.fuel_type, c.mileage, c.price, c.description, c.image, c.created_at
+        query = """
+            SELECT c.id, c.name, c.transmission, c.fuel_type, c.mileage, c.price, c.description, 
+                     c.brand, c.year, c.color, c.seats, c.location, c.status,
+                   c.image, c.image_2, c.image_3, c.image_4, c.image_5, c.created_at,
+                   c.user_id AS seller_id,
+                   u.name AS seller_name
             FROM cars c
-            ORDER BY c.created_at DESC
-        """)
-        cars = cursor.fetchall()
-        for car in cars:
-            if car['image']:
-                car['image'] = car['image'].replace('\\', '/')
+            JOIN users u ON c.user_id = u.id
+        """
+        params = []
+        if owner_id:
+            query += " WHERE c.user_id = %s"
+            params.append(owner_id)
 
+        query += " ORDER BY c.created_at DESC"
+
+        cursor.execute(query, params)
+        cars = cursor.fetchall()
+
+        # perbaiki path gambar
+        for car in cars:
+            for field in ['image', 'image_2', 'image_3', 'image_4', 'image_5']:
+                if car.get(field):
+                    car[field] = car[field].replace('\\', '/')
 
         cursor.close()
         conn.close()
+
         return jsonify({"message": "OK", "data": cars}), 200
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 
 # GET car by ID
@@ -44,7 +63,7 @@ def get_car_by_id(car_id):
         cursor = conn.cursor(dictionary=True)
         cursor.execute("""
             SELECT c.id, c.name, c.brand, c.transmission, c.seats, c.year, c.color, c.location,
-                   c.fuel_type, c.mileage, c.price, c.description, c.image, c.image_2, c.image_3, c.image_4, c.image_5, c.created_at,
+                   c.fuel_type, c.mileage, c.price, c.description, c.image, c.image_2, c.image_3, c.image_4, c.image_5, c.created_at, c.status,
                    u.id as owner_id, u.name as owner_name, u.email as owner_email
             FROM cars c
             JOIN users u ON c.user_id = u.id
@@ -68,6 +87,8 @@ def get_car_by_id(car_id):
 @cars_endpoints.route('/create', methods=['POST'])
 @jwt_required()
 def create_car():
+    print("📥 request.form:", dict(request.form))
+    print("📥 request.files:", request.files)
     required = get_form_data(["name", "price", "brand", "year", "color", "transmission",
                               "seats", "location", "fuel_type", "mileage", 
                               "image", "image_2", "image_3", "image_4", "image_5"], request)
@@ -82,11 +103,11 @@ def create_car():
     fuel_type = required["fuel_type"]
     mileage = required["mileage"]
     description = request.form.get('description')
-    image = required('image')
-    image_2 = required('image_2')
-    image_3 = required('image_3')
-    image_4 = required('image_4')
-    image_5 = required('image_5')
+    image = required['image']
+    image_2 = required['image_2']
+    image_3 = required['image_3']
+    image_4 = required['image_4']
+    image_5 = required['image_5']
 
     user = get_jwt_identity()
     user_id = user['id'] if isinstance(user, dict) else user
@@ -110,12 +131,38 @@ def create_car():
         conn.commit()
         car_id = cursor.lastrowid
 
+        return jsonify({
+            "message": "Car added",
+            "data": {
+                "id": car_id,
+                "user_id": user_id,
+                "name": name,
+                "brand": brand,
+                "price": price,
+                "mileage": mileage,
+                "year": year,
+                "transmission": transmission,
+                "fuel_type": fuel_type,
+                "color": color,
+                "seats": seats,
+                "location": location,
+                "description": description,
+                "image": image,
+                "image_2": image_2,
+                "image_3": image_3,
+                "image_4": image_4,
+                "image_5": image_5,
+            }
+        }), 201
+    except Exception as e:
+        conn.rollback()
+        print("DB Error:", e)
+        import traceback
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+    finally:
         cursor.close()
         conn.close()
-
-        return jsonify({"message": "Car added", "car_id": car_id}), 201
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
 
 
 # UPDATE car
@@ -123,57 +170,62 @@ def create_car():
 @jwt_required()
 def update_car(car_id):
     try:
-        name = request.form.get("name")
-        price = request.form.get("price")
-        brand = request.form.get("brand")
-        year = request.form.get("year")
-        color = request.form.get("color")
-        transmission = request.form.get("transmission")
-        seats = request.form.get("seats")
-        location = request.form.get("location")
-        fuel_type = request.form.get("fuel_type")
-        mileage = request.form.get("mileage")
-        description = request.form.get("description")
-
-        image = save_image(request.files.get('image'))
-        image_2 = save_image(request.files.get('image_2'))
-        image_3 = save_image(request.files.get('image_3'))
-        image_4 = save_image(request.files.get('image_4'))
-        image_5 = save_image(request.files.get('image_5'))
-
         conn = get_connection()
-        cursor = conn.cursor()
+        cursor = conn.cursor(dictionary=True)
 
-        cursor.execute("SELECT image, image_2, image_3, image_4, image_5 FROM cars WHERE id = %s", (car_id,))
+        # Ambil data existing
+        cursor.execute("SELECT * FROM cars WHERE id = %s", (car_id,))
         existing = cursor.fetchone()
+        if not existing:
+            return jsonify({"error": "Car not found"}), 404
 
-        updated_image = image or existing[0]
-        updated_image_2 = image_2 or existing[1]
-        updated_image_3 = image_3 or existing[2]
-        updated_image_4 = image_4 or existing[3]
-        updated_image_5 = image_5 or existing[4]
+        # Ambil data baru, jika None gunakan existing
+        name = request.form.get("name") or existing["name"]
+        price = request.form.get("price") or existing["price"]
+        brand = request.form.get("brand") or existing["brand"]
+        year = request.form.get("year") or existing["year"]
+        color = request.form.get("color") or existing["color"]
+        transmission = request.form.get("transmission") or existing["transmission"]
+        seats = request.form.get("seats") or existing["seats"]
+        location = request.form.get("location") or existing["location"]
+        fuel_type = request.form.get("fuel_type") or existing["fuel_type"]
+        mileage = request.form.get("mileage") or existing["mileage"]
+        description = request.form.get("description") or existing["description"]
+        status = request.form.get("status") or existing["status"]
 
+        # Simpan gambar baru jika ada
+        image = save_image(request.files.get('image')) or existing["image"]
+        image_2 = save_image(request.files.get('image_2')) or existing["image_2"]
+        image_3 = save_image(request.files.get('image_3')) or existing["image_3"]
+        image_4 = save_image(request.files.get('image_4')) or existing["image_4"]
+        image_5 = save_image(request.files.get('image_5')) or existing["image_5"]
+
+        # Update query
         cursor.execute("""
             UPDATE cars
             SET name=%s, price=%s, brand=%s, year=%s, color=%s,
                 transmission=%s, seats=%s, location=%s, fuel_type=%s,
-                mileage=%s, description=%s, image=%s, image_2=%s, image_3=%s, image_4=%s, image_5=%s
+                mileage=%s, description=%s, status=%s,
+                image=%s, image_2=%s, image_3=%s, image_4=%s, image_5=%s
             WHERE id = %s
         """, (name, price, brand, year, color, transmission, seats, location, fuel_type,
-              mileage, description, updated_image, updated_image_2, updated_image_3, updated_image_4, updated_image_5, car_id))
+              mileage, description, status,
+              image, image_2, image_3, image_4, image_5, car_id))
 
         conn.commit()
         cursor.close()
         conn.close()
 
         return jsonify({"message": "Car updated", "car_id": car_id}), 200
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 
 
+
 # DELETE car
-@cars_endpoints.route('/delete/<int:car_id>', methods=['DELETE'])
+@cars_endpoints.route('/<int:car_id>', methods=['DELETE'])
 @jwt_required()
 def delete_car(car_id):
     try:

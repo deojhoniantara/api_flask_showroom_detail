@@ -51,7 +51,7 @@ def create_article():
     admin_id = get_jwt_identity()  
 
     # Gunakan get_form_data hanya untuk field text
-    required = get_form_data(["title", "content"])
+    required = get_form_data(["title", "content"], request)
     try:
         title = required['title']
         content = required['content']

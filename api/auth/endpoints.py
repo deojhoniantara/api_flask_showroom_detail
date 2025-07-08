@@ -44,8 +44,12 @@ def login():
 
     return jsonify({
         "access_token": access_token,
+        "id": user["id"],
         "name": user["name"],
         "email": user["email"],
+        "phone": user.get("phone", ""),
+        "address": user.get("address", ""),
+        "role": user.get("role", "user"),
         "expires_in": expires,
         "token_type": "Bearer"
     }), 200

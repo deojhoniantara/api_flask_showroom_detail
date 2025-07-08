@@ -39,5 +39,6 @@ def admin_login():
     return jsonify({
         "access_token": access_token,
         "token_type": "Bearer",
-        "expires_in": decoded_token['exp']
+        "expires_in": decoded_token['exp'],
+        "admin_id": admin["id"],
     }), 200
