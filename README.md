@@ -27,7 +27,7 @@ Buka phpMyAdmin
 Buat Database "db_showroom" → Import  
 Pilih file .sql dari folder stuff/  
 
-### 5. Import Postman Collection (Folder stuff/)
+### 5. Import Postman Collection (Folder stuff/) - Opsional
 Buka Postman → Import  
 Pilih file .json dari folder stuff/  
 
