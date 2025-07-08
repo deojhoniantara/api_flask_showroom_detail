@@ -19,12 +19,12 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "ucup@mail.com",
+									"value": "asep@mail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "ucup123",
+									"value": "123",
 									"type": "text"
 								}
 							]
@@ -110,6 +110,26 @@
 					"response": []
 				},
 				{
+					"name": "/api/v1/users/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_local}}/api/v1/users/2",
+							"host": [
+								"{{flask_local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/api/v1/users/register",
 					"request": {
 						"method": "POST",
@@ -162,6 +182,16 @@
 				{
 					"name": "/api/v1/users/",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTk1MDUwNiwianRpIjoiMjRkNmQxOTQtZDUzMi00MWYyLWI1NjYtOTFmZGYxZDc2MWEzIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjMiLCJuYmYiOjE3NTE5NTA1MDYsImNzcmYiOiI2YTk1ODZiYS1jMzk5LTRiZmYtOTljNy1iZWZiYzZkYjNkYzciLCJleHAiOjE3NTE5NTQxMDYsImVtYWlsIjoiYXNlcEBtYWlsLmNvbSJ9.K35UDiWn8204JJsGOPRX2yf-oyGbuhwhEhUQ_h1wJ-s",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -169,17 +199,17 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "John Doe",
+									"value": "Asep",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "johndoe@mail.com",
+									"value": "asep@mail.com",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "johndoe123",
+									"value": "asep123",
 									"type": "text"
 								},
 								{
@@ -191,16 +221,11 @@
 									"key": "phone",
 									"value": "12797553",
 									"type": "text"
-								},
-								{
-									"key": "type",
-									"value": "individual",
-									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{flask_local}}/api/v1/users/1",
+							"raw": "{{flask_local}}/api/v1/users/3",
 							"host": [
 								"{{flask_local}}"
 							],
@@ -208,7 +233,7 @@
 								"api",
 								"v1",
 								"users",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -427,7 +452,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTY5OTYxNiwianRpIjoiODFjNTVhZTgtNTNjMi00NWU4LWIzNjEtZmE3Mjc4YzdmZDQyIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NTE2OTk2MTYsImNzcmYiOiIyMzhjZTBlNC0wYTNkLTRkZjctYWM1YS02ZThkMTU1ZmRjMWIiLCJleHAiOjE3NTE3MDMyMTYsImVtYWlsIjoidWN1cEBtYWlsLmNvbSJ9.KBwDx39IElelyNrjIpV5u-bRGES3Mn3f4HLZbXdNIyg",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTg0NzU3MiwianRpIjoiOWQxOTc0MzQtMmY5ZC00ODRhLTk4NjgtZThhZDg2YTE3OTExIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NTE4NDc1NzIsImNzcmYiOiIzNjY0MDI0Zi01Y2QwLTQ2OWUtYjcyMC0yMmIxODFkNGU0NzEiLCJleHAiOjE3NTE4NTExNzIsImVtYWlsIjoidWN1cEBtYWlsLmNvbSJ9.5vK-U-aHgHD4_AfvPmKIN4RLp29hp7vx8LMo5guNQoI",
 									"type": "string"
 								}
 							]
@@ -516,6 +541,11 @@
 									"key": "image_5",
 									"type": "file",
 									"src": "/C:/Users/deo jhoniantara/Downloads/download (4).jpeg"
+								},
+								{
+									"key": "status",
+									"value": "terjual",
+									"type": "text"
 								}
 							]
 						},
@@ -880,6 +910,89 @@
 								"articles",
 								"delete",
 								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "bookings",
+			"item": [
+				{
+					"name": "/api/v1/bookings",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTkyODY2MywianRpIjoiNGM2ZDgxYWItOTA2Yy00YWE2LTkwYjUtZGY3ZTcwNTIyZTc1IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjEiLCJuYmYiOjE3NTE5Mjg2NjMsImNzcmYiOiI5YTUzNDJiYS1mM2FhLTRlNjQtODk1Mi0yNWYzZTY1NjRhMGEiLCJleHAiOjE3NTE5MzIyNjMsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.7M4OyqmsK_bX8jPWTWN2ReN1VAggVZdo5yQ7uCFtqYk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "alice_johnson",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{flask_local}}/api/v1/bookings/read",
+							"host": [
+								"{{flask_local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bookings",
+								"read"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/api/v1/bookings Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc1MTk0Mjg3NCwianRpIjoiYjc1Y2MyMDUtMzc1NS00MzcyLWIzMWQtNWI5OWVlNGJkOGU4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjIiLCJuYmYiOjE3NTE5NDI4NzQsImNzcmYiOiJhZjUzNDBkYS1lZWYxLTQ1YjktODMwYy1kYjgyNDg4MzBkMGYiLCJleHAiOjE3NTE5NDY0NzQsImVtYWlsIjoidWN1cEBtYWlsLmNvbSJ9.VPm3NxKHiznMK6UdOIaz4CJTT77lwUqzNWq6Iawk59M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{flask_local}}/api/v1/bookings/my",
+							"host": [
+								"{{flask_local}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"bookings",
+								"my"
 							]
 						}
 					},
